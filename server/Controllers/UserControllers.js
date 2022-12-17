@@ -1,4 +1,4 @@
-import User from "../Models/UserModel";
+import User from "../Models/UserModel.js";
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -19,7 +19,7 @@ export const login = async (req,res) =>{
             return res.status(404).json({message: "Invalid username or password, please try again"});
         }
 
-        const token = jwt.sign({email:existUser.email, id:existUser._id}, 'asfasfsadfsdf', {'expiresIn':"1h"});
+        const token = jwt.sign({email:existUser.email, id:existUser._id}, 'test', {'expiresIn':"1h"});
 
         res.status(200).json({result:existUser,token});
     } catch (error) {
@@ -29,7 +29,7 @@ export const login = async (req,res) =>{
 
 
 export const register = async (req,res) =>{
-    const {email,password, firstName, lastName, confirmPassword} = req.body;
+    const {email,password, firstName, lastName, confirmPassword, profileImage} = req.body;
 
     try {
         const existingUser = await User.findOne({email});
@@ -40,7 +40,7 @@ export const register = async (req,res) =>{
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await User.create({email, password:hashedPassword, firstName,lastName});
+        const result = await User.create({email, password:hashedPassword, firstName,lastName, profileImage});
 
         const token = jwt.sign({email:result.email, id: result._id}, 'test', {expiresIn:"1h"});
 
@@ -71,7 +71,7 @@ export const register = async (req,res) =>{
 //     }
 // }
 
-export const deleteUser = async(req,res) {
+export const deleteUser = async(req,res) => {
 
     const {id} = req.params;
 

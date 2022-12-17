@@ -2,9 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import { CONNECTION_URL } from './security/tokens.js';
+import { CONNECTION_URL } from './Security/tokens.js';
 
-import userRoutes from './routes/UserRoutes';
+import userRoutes from './Routes/UserRoutes.js';
 
 const app = express();
 
@@ -13,7 +13,6 @@ app.use(bodyParser.json({limit:"30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb", extended:true}));
 app.use(cors());
 
-app.use('/posts',postRoutes);
 app.use('/users', userRoutes);
 
 

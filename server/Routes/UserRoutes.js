@@ -3,7 +3,7 @@
 import express from 'express';
 
 
-import { login, register, deleteUser } from '../Controllers/UserControllers';
+import { login, register, deleteUser } from '../Controllers/UserControllers.js';
 
 const router = express.Router();
 
