@@ -50,10 +50,34 @@ export const register = async (req,res) =>{
     }
 }
 
-export const editUser = async (req, res) {
+// export const editUser = async (req, res) {
+//     const { id: _id} = req.params;
+//     const user = req.body;
 
-}
+//     try {
+         // const updatedUser = await findByIdAndRemove()
+
+         // const isPasswordSame = await bcrypt.compare(password,updatedUser.password);
+        // if(!isPasswordSame){
+
+         // }
+//         if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
+
+         // const hashedPassword = await bcrypt.hash(password, 12);
+
+//         res.status(200).json({result: result, token});
+//     } catch (error) {
+//         res.status(500).json({message: "Something went wrong"});
+//     }
+// }
 
 export const deleteUser = async(req,res) {
-    
+
+    const {id} = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No user with id: ${id}`);
+    await User.findByIdAndRemove(id);
+
+    res.json({message: 'User deleted successfully'});
+
 }
