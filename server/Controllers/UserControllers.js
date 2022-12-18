@@ -29,8 +29,8 @@ export const login = async (req,res) =>{
 
 
 export const register = async (req,res) =>{
-    const {email,password, firstName, lastName, confirmPassword, profileImage} = req.body;
-
+    const {firstName, lastName,email,password,confirmPassword, profileImage} = req.body;
+    console.log(req.body.firstName);
     try {
         const existingUser = await User.findOne({email});
 
@@ -46,6 +46,7 @@ export const register = async (req,res) =>{
 
         res.status(200).json({result: result, token});
     } catch (error) {
+        console.log(error);
         res.status(500).json({message: "Something went wrong"});
     }
 }

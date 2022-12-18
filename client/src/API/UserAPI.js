@@ -1,12 +1,21 @@
 import axios from 'axios';
 
-const API = axios.create({baseURL:'http://localhost:5050'});
-
-const userAPI = '/users/'
+// const API = axios.create({baseURL:'http://localhost:5050'});
 
 
-export const login = (formData) => API.post(userAPI+ 'login',formData);
+// API.interceptors.request.use((req)=>{
+//     if(localStorage.getItem('profile')){
+//         req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+//     }
 
-export const register = (formData) => API.post(userAPI+'register',formData);
+//     return req;
+// })
 
-export const deleteUser = (id) => API.delete(userAPI+`delete${id}`);
+// const userAPI = '/users/'
+
+
+export const login = (formData) => axios.post('http://localhost:5050/users/login',formData);
+
+export const register = (formData) => axios.post('http://localhost:5050/users/register',formData);
+
+export const deleteUser = (id) => axios.delete(`http://localhost:5050/users/delete${id}`);
