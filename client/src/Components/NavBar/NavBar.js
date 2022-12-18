@@ -38,21 +38,22 @@ const NavBar = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color='inherit'>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            UnnamedProject
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+      <Link to="/">
+          <Typography>UnNamed Project</Typography>
+      </Link>
+      <Toolbar>
+                {user ? (
+                    <div>
+                        <Avatar  alt={user.result.name} src={user.result.imageUrl}>{user.result.firstName.charAt(0)}</Avatar>
+                        <Typography variant="h6">{user.result.firstName}</Typography>
+                        <Button variant="contained" color="secondary" onClick={logout}>Logout</Button>
+                    </div>
+                ) : (
+                    <div>
+                        <Button component={Link} to="/auth" variant="contained" color="primary">Sign in</Button>
+                    </div>
+                ) }
+            </Toolbar>
       </AppBar>
     </Box>
     )
