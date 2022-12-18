@@ -28,17 +28,14 @@ export const UserAuth = () => {
     e.preventDefault();
     console.log(formData);
     if (isRegistered) {
-        console.log(formData);
       dispatch(register(formData, navigate));
     } else {
-        console.log(formData);
       dispatch(login(formData, navigate));
     }
   };
 
   const handleChange = (e) => {
     setFormData({...formData, [e.target.name]:e.target.value})
-    console.log(formData);
   };
 
   const handleShowPassword = () => {
