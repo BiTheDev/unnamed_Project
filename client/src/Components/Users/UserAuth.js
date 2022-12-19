@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Paper, Button, Grid, Typography, Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Paper, Button, Grid, Typography, Container, Avatar } from "@mui/material";
 import FileBase from 'react-file-base64';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ const initialState = {
 };
 
 export const UserAuth = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
   const classes = style();
   const [showPassword, setShowPassword] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
@@ -35,6 +36,7 @@ export const UserAuth = () => {
   };
 
   const handleChange = (e) => {
+    console.log(formData);
     setFormData({...formData, [e.target.name]:e.target.value})
   };
 
@@ -46,6 +48,12 @@ export const UserAuth = () => {
     setIsRegistered((setting) => !setting);
     setShowPassword(false);
   };
+  
+  useEffect(()=>{
+    if(user){
+      navigate('/');
+    }
+  },[user])
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
@@ -56,6 +64,9 @@ export const UserAuth = () => {
           <Grid container spacing={2}>
             {isRegistered && (
               <>
+              <div className={classes.fileInput}>
+                <FileBase type="file" multiple={false} onDone={({base64}) => setFormData({...FormData, profileImage:base64})}/>
+              </div>
                 <Input
                   name="firstName"
                   label="First Name"
@@ -92,11 +103,7 @@ export const UserAuth = () => {
                 handleChange={handleChange}
                 type="password"
               />
-              <div className={classes.fileInput}>
-                <FileBase type="file" multiple={false} onChange={({base64}) => setFormData({...FormData, profileImage:base64})}/>
-                </div>
-
-              </>
+            </>
             )}
           </Grid>
           <Button

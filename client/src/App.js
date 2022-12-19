@@ -6,7 +6,6 @@ import NavBar from './Components/NavBar/NavBar';
 import Home from './Components/Home/Home';
 import { UserDetails } from './Components/Users/UserDetails/UserDetails';
 const App = () => {
-  const user = JSON.parse(localStorage.getItem('profile'));
   return (
     <BrowserRouter>
       <Container maxWidth="xl">
