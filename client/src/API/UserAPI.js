@@ -18,4 +18,6 @@ export const login = (formData) => axios.post('http://localhost:5050/users/login
 
 export const register = (formData) => axios.post('http://localhost:5050/users/register',formData);
 
-export const deleteUser = (id) => axios.delete(`http://localhost:5050/users/delete${id}`);
+export const deleteUser = (id) => axios.delete(`http://localhost:5050/users/delete/${id}`);
+
+export const getUserDetail = (id) => axios.get(`http://localhost:5050/users/detail/${id}`);

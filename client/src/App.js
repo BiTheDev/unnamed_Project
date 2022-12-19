@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import { UserAuth } from './Components/Users/UserAuth';
 import NavBar from './Components/NavBar/NavBar';
 import Home from './Components/Home/Home';
+import { UserDetails } from './Components/Users/UserDetails/UserDetails';
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
         <Route path="*" element={<Home/>} exact />
         <Route path="/auth" element={<UserAuth/>} exact />
+        <Route path="/user/profile/:id" element={<UserDetails/>} exact />
         </Routes>
       </Container>
     </BrowserRouter>

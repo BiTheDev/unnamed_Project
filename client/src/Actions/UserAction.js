@@ -4,7 +4,6 @@ import * as UserAPI from '../API/UserAPI.js';
 export const login = (formData, navigate)=> async (dispatch) =>{
     try {
         const { data } = await UserAPI.login(formData);
-        console.log(formData);
         dispatch({type: UserActionTypes.AUTH, data});
         navigate("/");
     } catch (error) {
@@ -26,8 +25,16 @@ export const register = (formData, navigate)=> async (dispatch)=>{
 export const deleteUser = (id) => async(dispatch)=>{
     try {
         await UserAPI.deleteUser(id);
-
         dispatch({type:UserActionTypes.DELETE_USER,payload:id});
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getUserDetail = (id) => async(dispatch)=>{
+    try {
+        const {data} = await UserAPI.getUserDetail(id);
+        dispatch({type:UserActionTypes.FETCH_USER_DETAILS, data});
     } catch (error) {
         console.log(error);
     }
