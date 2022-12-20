@@ -48,7 +48,7 @@ const NavBar = () => {
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
-    //navigate.push('/');
+    navigate('/');
 
     setUser(null);
   };
