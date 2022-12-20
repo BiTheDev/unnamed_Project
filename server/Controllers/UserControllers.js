@@ -55,7 +55,7 @@ export const updateUser = async (req, res)=> {
     const {id} = req.params;
     const user = req.body;
 
-    console.log(user);
+    //console.log(user);
 
     try {
          const getUserInfo = await User.findById(id);

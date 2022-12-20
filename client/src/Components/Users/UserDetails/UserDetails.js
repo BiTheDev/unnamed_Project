@@ -19,6 +19,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import Input from "../Input.js";
 
+
 import {
   Container,
   Grid,
@@ -69,7 +70,7 @@ export const UserDetails = () => {
   const handleUpdateFormSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    dispatch(updateUser(userDetail._id,formData));
+    dispatch(updateUser(userDetail._id, formData, navigate));
   };
 
   const handleInputChange = (e) => {
@@ -81,16 +82,21 @@ export const UserDetails = () => {
     setShowPassword((prevDisplaySetting) => !prevDisplaySetting);
   };
 
+  const deleteAndLogout =() =>{
+    
+    dispatch(deleteUser(userDetail._id))
+  }
+
   return (
     <Paper variant="outlined">
       <Container maxWidth="xl" className="container">
         <Grid container spacing={2}>
-          <Grid >
+          <Grid>
             <Typography variant="h3">
               Hello {userDetail.firstName} {userDetail.lastName}
             </Typography>
           </Grid>
-          <Grid >
+          <Grid>
             <Typography>Your email is {userDetail.email}</Typography>
           </Grid>
         </Grid>
@@ -101,6 +107,13 @@ export const UserDetails = () => {
         onClick={handleEditFormDisplay}
       >
         Edit Info
+      </Button>
+      <Button
+        color="error"
+        variant="contained"
+        onClick={deleteAndLogout}
+      >
+       Delete
       </Button>
       {EditFormOpened && (
         <Box
