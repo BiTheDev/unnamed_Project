@@ -39,3 +39,13 @@ export const getUserDetail = (id) => async(dispatch)=>{
         console.log(error);
     }
 }
+
+export const updateUser =(id,formData,navigate)=> async(dispatch)=>{
+    try {
+        const {data} = await UserAPI.updateUser(id,formData);
+        dispatch({type:UserActionTypes.UPDATE_USER,data})
+        navigate(`/user/profile/${id}`);
+    } catch (error) {
+        console.log(error);
+    }
+}

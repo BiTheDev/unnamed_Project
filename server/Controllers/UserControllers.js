@@ -51,26 +51,36 @@ export const register = async (req,res) =>{
     }
 }
 
-// export const editUser = async (req, res) {
-//     const { id: _id} = req.params;
-//     const user = req.body;
+export const updateUser = async (req, res)=> {
+    const {id} = req.params;
+    const user = req.body;
 
-//     try {
-         // const updatedUser = await findByIdAndRemove()
+    console.log(user);
 
-         // const isPasswordSame = await bcrypt.compare(password,updatedUser.password);
-        // if(!isPasswordSame){
+    try {
+         const getUserInfo = await User.findById(id);
 
-         // }
-//         if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send(`No user with id: ${_id}`);
-
-         // const hashedPassword = await bcrypt.hash(password, 12);
-
-//         res.status(200).json({result: result, token});
-//     } catch (error) {
-//         res.status(500).json({message: "Something went wrong"});
-//     }
-// }
+         const isOldPasswordSame = await bcrypt.compare(user.oldPassword,getUserInfo.password);
+        if(!isOldPasswordSame){
+            return res.status(400).json({message: "Please confirm your old password"});
+         }
+         if(user.newPassword != user.confirmPassword){
+            return res.status(400).json({message: "Please confirm your new password"});
+         }
+         const hashedPassword = await bcrypt.hash(user.newPassword, 12);
+         const result = await User.findByIdAndUpdate(id,
+             {"firstName": user.firstName,
+              "lastName": user.lastName,
+              "email": user.email,
+              "profileImage":user.profileImage,
+              "password":hashedPassword
+             })
+        res.status(200).json({result: result});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: "Something went wrong"});
+    }
+}
 
 export const deleteUser = async(req,res) => {
 

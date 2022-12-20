@@ -65,7 +65,7 @@ export const UserAuth = () => {
             {isRegistered && (
               <>
               <div className={classes.fileInput}>
-                <FileBase type="file" multiple={false} onDone={({base64}) => setFormData({...FormData, profileImage:base64})}/>
+                <FileBase type="file" multiple={false} onDone={({base64}) => setFormData({...formData, profileImage:base64})}/>
               </div>
                 <Input
                   name="firstName"

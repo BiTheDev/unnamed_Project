@@ -21,3 +21,5 @@ export const register = (formData) => axios.post('http://localhost:5050/users/re
 export const deleteUser = (id) => axios.delete(`http://localhost:5050/users/delete/${id}`);
 
 export const getUserDetail = (id) => axios.get(`http://localhost:5050/users/detail/${id}`);
+
+export const updateUser = (id,formData) => axios.put(`http://localhost:5050/users/update/${id}`,formData);
