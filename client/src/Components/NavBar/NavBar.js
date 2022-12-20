@@ -219,56 +219,6 @@ const NavBar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-
-    //   <AppBar position="static" color="inherit"
-    //   >
-    //     <Container maxWidth="xl">
-    //     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-    //       <Typography
-    //         variant="h6"
-    //         noWrap
-    //         component="a"
-    //         href="/"
-    //         sx={{
-    //           mr: 2,
-    //           display: { xs: 'none', md: 'flex' },
-    //           fontFamily: 'monospace',
-    //           fontWeight: 700,
-    //           letterSpacing: '.3rem',
-    //           color: 'inherit',
-    //           textDecoration: 'none',
-    //         }}
-    //       >
-    //         Unnamed_Project
-    //       </Typography>
-    //     </Container>
-    //     <Toolbar>
-    //       {user ? (
-    //         <div>
-    //           <Link to={`user/profile/${user.result._id}`}>
-    //             <Avatar alt={user.result.name} src={user.result.profileImage}>
-    //               {user.result.firstName.charAt(0)}
-    //             </Avatar>
-    //           </Link>
-    //           <Typography variant="h6">{user.result.firstName}</Typography>
-    //           <Button variant="contained" color="secondary" onClick={logout}>
-    //             Logout
-    //           </Button>
-    //         </div>
-    //       ) : (
-    //         <div>
-    //           <Button
-    //             component={Link}
-    //             to="/auth"
-    //             variant="contained"
-    //             color="primary"
-    //           >
-    //             Sign in
-    //           </Button>
-    //         </div>
-    //       )}
-    //     </Toolbar>
-    //   </AppBar>
   );
 };
 
